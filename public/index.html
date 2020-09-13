@@ -8,6 +8,7 @@
   <script>
     function callAPi(event){
       document.getElementById('response').innerHTML = '';
+      document.getElementById('response').classList.remove("error");
       var data = JSON.stringify({"text": document.getElementById('text').value});
       var xhr = new XMLHttpRequest();
       //xhr.withCredentials = true;
@@ -15,10 +16,15 @@
 
       xhr.addEventListener("readystatechange", function() {
         if(this.readyState === 4) {
-          console.log(this.responseText);
-          document.getElementById('button').classList.remove("loading");
-          document.getElementById('response').innerHTML = JSON.parse(this.responseText).label;
-        }
+          if(this.status!=200) {
+            document.getElementById('button').classList.remove("loading");
+            document.getElementById('response').classList.add("error");
+            document.getElementById('response').innerHTML = 'We got an error, Please try again...';
+          } else {
+            document.getElementById('button').classList.remove("loading");
+            document.getElementById('response').innerHTML = JSON.parse(this.responseText).label;  
+          }
+        } 
       });
 
       xhr.open("POST", "https://api.anuragdubey.in/");
@@ -32,7 +38,10 @@
   <h1 class="test-xl">Enter Complain in the box:</h1>
   <textarea class="textarea" name="text" id="text" cols="30" rows="10"></textarea>
   <button id="button" class="button" onclick="callAPi()">Submit <span>...</span></button>
+  <div class="border"></div>
   <h3>Response: </h3>
   <p id="response"></p>
+
+  <a href="/home.html" class="link">Created By: Lalit Chaturvedi</a>
 </body>
 </html>
