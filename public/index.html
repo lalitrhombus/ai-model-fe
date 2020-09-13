@@ -9,6 +9,7 @@
     function callAPi(event){
       document.getElementById('response').innerHTML = '';
       document.getElementById('response').classList.remove("error");
+      document.getElementById('response').classList.remove("success");
       var data = JSON.stringify({"text": document.getElementById('text').value});
       var xhr = new XMLHttpRequest();
       //xhr.withCredentials = true;
@@ -22,6 +23,7 @@
             document.getElementById('response').innerHTML = 'We got an error, Please try again...';
           } else {
             document.getElementById('button').classList.remove("loading");
+            document.getElementById('response').classList.add("success");
             document.getElementById('response').innerHTML = JSON.parse(this.responseText).label;  
           }
         } 
@@ -35,13 +37,43 @@
   </script>
 </head>
 <body class="full-screen flex-center">
+  <h2>Hey Guys!!!</h2>
+  <p>We have read about so many awesome models and model architectures. Many of us have built models
+    and got good results. But what is next?</p>
+  <p>For us, the end goal has always been a minimum working product and today we have deployed our very
+    first model &#128512;.</p>
+  <p>The model isn’t perfect and there is still a chance for lot of improvements. We will try to fix these asap.</p>
+  <div class="border"></div>
+  <h3>Problem Statement</h3>
+  <p>In the task, given a consumer complaint narrative, the model attempts to predict
+    which product the complaint is about. This is a multi-class text classification problem.</p>
+  <br/>
+  <p><strong>Sample Data Inputs</strong></p>
+  <ol>
+    <li>Claimed owe years despite proof payment sent canceled check ownpaid invoice continue insist
+      owe collection agencies stop harassment bill already paid four years ago.</li>
+      <li>Due inconsistencies amount owed told bank amount reported credit reporting agencies advised
+        write good letter order address issue request negative entry removed credit report together
+        vehicle stolen declared total loss insurance company insurance company gap insurancw
+        companypaid outstanding balance loan told bank still balance due loan good faith without
+        received proof still balance made partial payment towards remaining debt sent goodwill letter
+        still offering pay remainder debt echange removal negative entry credit report one point per
+        credit monitoring agency showed delinquent balance checked credit report delinquent balance
+        monies gap insurance insurance company paid bank says still owe already paid contacted bank
+        via return receipt mail given courtesy response yet</li>
+  </ol>
+  <div class="border"></div>
   <h1 class="test-xl">Enter Complain in the box:</h1>
   <textarea class="textarea" name="text" id="text" cols="30" rows="10"></textarea>
   <button id="button" class="button" onclick="callAPi()">Submit <span>...</span></button>
   <div class="border"></div>
   <h3>Response: </h3>
   <p id="response"></p>
-
+  <div class="border"></div>
+  <p>Wondering how we are trying to achieve it. Follow the documentation below and more lets dicuss this with us click on link on right hand corner.</p>
+  <img src="/MLOPS_model_plot.png" alt="">
   <a href="/home.html" class="link">Meet creators..</a>
+  <p>We are not expert just learners same as you, so if you have any thoughts, feedback we were love to here both.</p>
+  <p>There were lot more from where this is comming soon, Please keep checking this space for more.</p>
 </body>
 </html>
